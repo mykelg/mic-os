@@ -6,7 +6,7 @@ SECTIONS
   }
   .text : {
     startup.o(.text)
-    test.o(.text)
+    main.o(.text)
   }
   . = 0x20000000;
   .data : { *(.data) }

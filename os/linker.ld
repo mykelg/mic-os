@@ -6,6 +6,7 @@ SECTIONS
   }
   .text : {
     startup.o(.text)
+    lib.o(.text)
     main.o(.text)
   }
   . = 0x20000000;

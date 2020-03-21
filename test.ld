@@ -1,6 +1,9 @@
 SECTIONS
 {
   . = 0x0;
+  .vectors : {
+    vector.o(.data)
+  }
   .text : {
     startup.o(.text)
     test.o(.text)

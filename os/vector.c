@@ -9,7 +9,7 @@ void (*vectors[])(void) = {
     0,                // CM3 Memory Management Fault
     0,                // CM3 Bus Fault
     0,                // CM3 Usage Fault
-    0,                // NXP Checksum code
+    0,                // Reserved
     0,                // Reserved
     0,                // Reserved
     0,                // Reserved

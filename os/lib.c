@@ -87,3 +87,20 @@ void puts(const char* s) {
     putc(*(s++));
   }
 }
+
+void putxval(unsigned long value) {
+  char buf[9];  // ulong max <= 8-digit
+  char *p;
+
+  p = buf + sizeof(buf) - 1;
+  *(p--) = '\0';
+
+  puts("0x");
+
+  while (value) {
+    *(p--) = "0123456789abcdef"[value & 0xf];
+    value >>= 4;
+  }
+
+  puts(p + 1);
+}

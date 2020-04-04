@@ -4,10 +4,6 @@
 #define LM3S6965_UART1 ((volatile struct Uart*)0x4000d000)
 #define LM3S6965_UART2 ((volatile struct Uart*)0x4000e000)
 
-typedef unsigned char uint8_t;
-typedef unsigned short uint16_t;
-typedef unsigned long uint32_t;
-
 struct Uart {
   uint32_t dr;
   union {

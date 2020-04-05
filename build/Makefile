@@ -22,7 +22,7 @@ CFLAGS :=
 CFLAGS += -Wall -mthumb -mlittle-endian -march=armv7-m -mcpu=cortex-m3
 CFLAGS += -ffreestanding
 CFLAGS += -nostdinc -nostdlib -fno-builtin
-#CFLAGS += -g
+CFLAGS += -g
 CFLAGS += -Os
 
 LFLAGS :=

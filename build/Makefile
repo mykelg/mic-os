@@ -12,6 +12,7 @@ OBJCOPY := $(BINDIR)/$(ADDNAME)objcopy
 OBJDUMP := $(BINDIR)/$(ADDNAME)objdump
 RANLIB  := $(BINDIR)/$(ADDNAME)ranlib
 STRIP   := $(BINDIR)/$(ADDNAME)strip
+GDB     := $(BINDIR)/$(ADDNAME)gdb
 
 #Q := @
 OUT_TARGET_ARM_DIR := out/target/arm
@@ -40,3 +41,10 @@ clean:
 
 start: $(BIN_DIR)/micos
 	qemu-system-arm -cpu cortex-m3 -machine lm3s6965evb -nographic -kernel $^
+
+start-gdbd: $(BIN_DIR)/micos
+	qemu-system-arm -cpu cortex-m3 -machine lm3s6965evb -nographic -kernel $^ \
+		-gdb tcp::3333 -S
+
+start-gdb: $(BIN_DIR)/micos.elf
+	$(GDB) $^ -ex "target remote localhost:3333"

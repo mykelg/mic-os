@@ -93,6 +93,9 @@ void putxval(unsigned long value) {
 
   puts("0x");
 
+  if (!value) {
+    *(p--) = '0';
+  }
   while (value) {
     *(p--) = "0123456789abcdef"[value & 0xf];
     value >>= 4;

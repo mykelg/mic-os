@@ -35,13 +35,13 @@ SECTIONS
     data_start = . ;
     *(.data)
     data_end = . ;
-  } > data
+  } > data AT> rom
 
   .bss : {
     bss_start = . ;
     *(.bss)
     bss_end = . ;
-  } > data
+  } > data AT> rom
 
   . = ALIGN(8);
 

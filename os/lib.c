@@ -84,7 +84,7 @@ void puts(const char* s) {
   }
 }
 
-void putxval(unsigned long value) {
+void putxvald(unsigned long value, int digit) {
   char buf[9];  // ulong max <= 8-digit
   char *p;
 
@@ -93,15 +93,20 @@ void putxval(unsigned long value) {
 
   puts("0x");
 
-  if (!value) {
+  if (!value && digit == 0) {
     *(p--) = '0';
   }
-  while (value) {
+  while (value || digit > 0) {
     *(p--) = "0123456789abcdef"[value & 0xf];
     value >>= 4;
+    digit--;
   }
 
   puts(p + 1);
+}
+
+void putxval(unsigned long value) {
+  putxvald(value, 0);
 }
 
 void* memcpy(void* dest, const void* src, size_t n) {

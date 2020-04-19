@@ -2,12 +2,17 @@ MEMORY
 {
   romall(rx)  : o = 0x00000000, l = 0x00040000 /* 256KB */
   vectors(r)  : o = 0x00000000, l = 0x00000100 /* top of ROM */
-  rom(rx)     : o = 0x00000100, l = 0x0003ff00
+  rom(rx)     : o = 0x00000100, l = 0x0000ff00
+  osdata(rx)  : o = 0x00010000, l = 0x00030000
 
   ramall(rwx) : o = 0x20000000, l = 0x00010000 /* 64KB */
   data(rwx)   : o = 0x20000000, l = 0x00000300
   stack(rw)   : o = 0x20000300, l = 0x00000000 /* end of RAM */
 }
+
+TARGET(binary)
+INPUT (./os/micos.bin)
+OUTPUT_FORMAT(default)
 
 SECTIONS
 {
@@ -30,6 +35,12 @@ SECTIONS
     *(.rodata.*)
     rodata_end = . ;
   } > rom
+
+  .osdata : {
+    osdata_start = . ;
+    ./os/micos.bin
+    osdata_end = . ;
+  } > osdata
 
   .data : {
     data_start = . ;

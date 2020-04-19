@@ -1,4 +1,5 @@
 #include "lib.h"
+#include "test.h"
 
 static void init(void) {
   extern int rodata_end, data_start, data_end, bss_start, bss_end;
@@ -12,6 +13,9 @@ void main(void) {
   init();
 
   puts("Hello, World!\n");
+
+  test();
+
   while (1) {
   }
 }

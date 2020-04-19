@@ -24,6 +24,7 @@ SECTIONS
     text_start = . ;
     startup.o(.text)
     lib.o(.text)
+    test.o(.text)
     main.o(.text)
     text_end = . ;
   } > rom

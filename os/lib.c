@@ -125,3 +125,24 @@ void* memset(void* s, int c, size_t n) {
   }
   return s;
 }
+
+void dump(const char* buffer, size_t size) {
+  const int remainder = (int)buffer % 0x10;
+  if (remainder != 0) {
+    buffer -= remainder;
+    size += remainder;
+  }
+  for (int i = 0; i < size; i++) {
+    if (i % 0x10 == 0) {
+      putxvald(buffer + i, 4);
+      puts(": ");
+    }
+    putxvald(buffer[i], 2); puts(" ");
+    if ((i + 1) % 0x10 == 0) {
+      puts("\n");
+    } else if ((i + 1) % 0x08 == 0) {
+      puts(" ");
+    }
+  }
+  puts("\n");
+}

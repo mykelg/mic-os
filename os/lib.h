@@ -10,3 +10,4 @@ void putxval(unsigned long value);
 void putxvald(unsigned long value, int digit);
 void* memcpy(void* dest, const void* src, size_t n);
 void* memset(void* s, int c, size_t n);
+void dump(const char* buffer, size_t size);

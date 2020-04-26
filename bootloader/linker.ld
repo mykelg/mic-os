@@ -11,7 +11,7 @@ MEMORY
 }
 
 TARGET(binary)
-INPUT (./os/micos.bin)
+INPUT (./out/target/arm/bin/micos)
 OUTPUT_FORMAT(default)
 
 SECTIONS
@@ -39,7 +39,7 @@ SECTIONS
 
   .osdata : {
     osdata_start = . ;
-    ./os/micos.bin
+    ./out/target/arm/bin/micos
     osdata_end = . ;
   } > osdata
 

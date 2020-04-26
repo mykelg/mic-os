@@ -84,9 +84,9 @@ static void test_memory_dump_osdata() {
   puts("[TEST] Memory dump osdata\n");
   extern int osdata_start, osdata_end;
   const char* osdata = &osdata_start;
-  puts(" ");
-  puts(osdata);
-  dump(osdata, (size_t)(&osdata_end) - (size_t)(&osdata_start));
+  dump(osdata, 0x100);
+  dump(osdata + 0x10000, 0x600);
+  dump(osdata + 0x20000, 0x300);
   puts("\n");
 }
 

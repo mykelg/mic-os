@@ -1,3 +1,4 @@
+#include "elf.h"
 #include "lib.h"
 #include "test.h"
 
@@ -15,6 +16,9 @@ void main(void) {
   puts("Hello, World!\n");
 
   test();
+
+  extern int osdata_start;
+  elf_load(&osdata_start);
 
   while (1) {
   }

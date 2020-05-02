@@ -18,7 +18,10 @@ void main(void) {
   test();
 
   extern int osdata_start;
-  elf_load(&osdata_start);
+  char* entry_point = elf_load(&osdata_start);
+  puts("entry point: "); putxval((unsigned long)entry_point); puts("\n");
+  void (*f)(void) = (void (*)(void))entry_point;
+  f();
 
   while (1) {
   }

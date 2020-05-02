@@ -7,7 +7,7 @@ MEMORY
 
   ramall(rwx) : o = 0x20000000, l = 0x00010000 /* 64KB */
   data(rwx)   : o = 0x20000000, l = 0x00000300
-  stack(rw)   : o = 0x20000300, l = 0x00000000 /* end of RAM */
+  stack(rw)   : o = 0x20010000, l = 0x00000000 /* end of RAM */
 }
 
 TARGET(binary)

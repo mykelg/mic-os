@@ -75,7 +75,14 @@ static bool elf_load_program(const struct ElfHeader* header) {
     putxvald(p_header->memory_size,     5); puts(" ");
     putxvald(p_header->flags,           1); puts(" ");
     putxvald(p_header->align,           3); puts("\n");
+
+    memcpy((char*)(p_header->physical_address),
+           (char*)(header) + p_header->offset, p_header->file_size);
+    memset((char*)(p_header->physical_address) + p_header->file_size,
+           0, p_header->memory_size - p_header->file_size);
   }
+
+  return true;
 }
 
 char* elf_load(char* elf_file) {

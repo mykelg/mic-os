@@ -1,20 +1,14 @@
+ENTRY("start")
+
 MEMORY
 {
-  romall(rx)  : o = 0x00000000, l = 0x00040000 /* 256KB */
-  vectors(r)  : o = 0x00000000, l = 0x00000100 /* top of ROM */
-  rom(rx)     : o = 0x00000100, l = 0x0000ff00
-
   ramall(rwx) : o = 0x20000000, l = 0x00010000 /* 64KB */
-  data(rwx)   : o = 0x20000000, l = 0x00000300
-  stack(rw)   : o = 0x20000300, l = 0x00000000 /* end of RAM */
+  ram(rwx)    : o = 0x20000100, l = 0x00007f00
+  stack(rw)   : o = 0x20010000, l = 0x00000000 /* end of RAM */
 }
 
 SECTIONS
 {
-  .vectors : {
-    vector.o(.data)
-  } > vectors
-
   .text : {
     text_start = . ;
     startup.o(.text)
@@ -22,7 +16,7 @@ SECTIONS
     test.o(.text)
     main.o(.text)
     text_end = . ;
-  } > rom
+  } > ram
 
   .rodata : {
     rodata_start = . ;
@@ -30,19 +24,19 @@ SECTIONS
     *(.rodata)
     *(.rodata.*)
     rodata_end = . ;
-  } > rom
+  } > ram
 
   .data : {
     data_start = . ;
     *(.data)
     data_end = . ;
-  } > data AT> rom
+  } > ram
 
   .bss : {
     bss_start = . ;
     *(.bss)
     bss_end = . ;
-  } > data AT> rom
+  } > ram
 
   . = ALIGN(8);
 
